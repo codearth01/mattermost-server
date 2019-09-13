@@ -678,6 +678,8 @@ func UpgradeDatabaseToVersion511(sqlStore SqlStore) {
 
 		//saveSchemaVersion(sqlStore, VERSION_5_11_0)
 	}
+
+	sqlStore.CreateColumnIfNotExists("ChannelMembers", "LastAutoReplyPostAt", "bigint(20)", "bigint", "0")
 }
 
 func UpgradeDatabaseToVersion512(sqlStore SqlStore) {

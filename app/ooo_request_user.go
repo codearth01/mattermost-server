@@ -108,6 +108,8 @@ func (a *App) UpdateOooRequestUser(userId string, user *model.User, delayedUpdat
 		if delayedUpdate && status.Status == model.STATUS_OUT_OF_OFFICE {
 			a.SetStatusOnline(userId, true)
 			a.DisableAutoResponder(userId, false)
+		} else {
+			startDateMillis = model.GetMillis()
 		}
 		err1 := a.Update(userId, startDateMillis, endDateMillis, user.NotifyProps)
 		if err1 != nil {
